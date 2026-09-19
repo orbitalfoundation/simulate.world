@@ -1,6 +1,6 @@
-# Working notes
+# Editorial notes
 
-The public presentation is the essay, not a restoration exhibit. Preserve the separate contemporary essay at ../index.html for comparison. Keep revision history, provenance work, and pending checks here rather than in the reading flow.
+The public site is the essay. Revision details belong in [devlog/](devlog/README.md). The separate contemporary draft is at `/draft/`.
 
 ## Date
 
@@ -14,34 +14,18 @@ https://rdap.identitydigital.services/rdap/domain/simulate.world
 
 The many `2001 01 01` values in the source resource collection appear to be placeholders and are not used for dating.
 
-## Pending fact checks
+## September 2026 cleanup
 
-Two factual notes are in place, without changing the essay's prose: global polio eradication had not been achieved, and acidification means decreasing pH.
+The author approved the factual and language corrections in the audit. They are
+now incorporated in `source/thesis.json`; `copy-edits.json` retains mechanical
+normalization. The nine chapters and 50 part images remain in sequence. See the
+[correction record](devlog/2026-09-18-audit-corrections.md) for decisions and sources.
 
-Remaining checks include the Gaia description; methane/extinction claims; the 2048 fish prediction; geological chronology; the pine-beetle/financial-crisis connection; drought quantities and units; Grand Coulee/grizzly inference; and the Yellowstone causal account. Distinguish scenarios, advocacy, and measured facts. This is not yet a fully fact-checked essay.
+The reading list retains its period references. At the author’s explicit request,
+Smith and Morowitz’s 2016 book was added with its actual publication year. Linked
+biography pages may be current; descriptions avoid importing later career events
+into the essay. Four portrait photographs predate the working essay date; reuse
+credits appear on the reading page and in the resource data.
 
-Complete photographer credit and image permission review before public release. Preserve the existing prose and image sequence unless a specific edit is agreed. The old invitation to participate remains an aspiration, not a live meetup program.
-
-## Small factual edits applied
-
-At the author's request, the presentation now reads as an essay from 2015 rather than a reconstruction. Datestamp provenance and editorial commentary live here, not in the public reading flow. The companion contemporary essay remains at ../index.html but is not promoted inside this essay.
-
-Two narrowly scoped changes are applied at render time; source/thesis.json remains unchanged:
-- Emerging Superpowers, part 5: “such as eradicating polio under” → “such as progress toward eradicating polio under”. Source: GPEI March 2015 fact sheet, https://polioeradication.org/wp-content/uploads/2016/09/CVDPVFactSheetMarch2015.pdf
-- Looking closer, part 3: “an increase of 0.1 pH over” → “a decrease of 0.1 pH units over”. Source: NOAA 2014, https://oceanacidification.noaa.gov/innovative-lab-gauges-acidification-effects-on-marine-snails/
-
-The detached factual-note panels are removed in favor of those two corrections. Other prose is unchanged. Reading-list provenance remains in reading-data.json's origin fields. The public list has straightforward descriptions rather than reconstruction commentary; all selected works predate the working datestamp.
-
-## Floating chapter menu
-
-Replaced the full-height sidebar with a fixed top-left thumbnail palette. Chapter thumbnails use each chapter's existing art selection; nine small JPEGs are included in thumbnails/. The full-size essay images and prose are unchanged. Desktop readers can collapse the palette; phone readers open it from the floating header. Background images span the page, while prose retains enough left inset to avoid the menu. This change is confined to the 2015 essay and companion reading list.
-
-## Reading directory and book covers
-
-Added all 73 entries from source/resources.json under their five existing categories. Kept original destination URLs and labels; omitted placeholder dates and long copied excerpts. The directory's outbound links have not yet had a full link-health or factual review. Earlier curated readings remain above the directory, so some references intentionally appear in both contexts.
-
-Added five ISBN-matched Open Library cover images, stored locally in covers/. ISBNs and source URLs are recorded in reading-data.json. Visually checked all five jackets. Checked desktop and 390px mobile layouts.
-
-## September 2026 correctness audit and discovery
-
-Performed a complete read-through of the 50 parts and resource list. Source-linked editorial audit delivered separately as simulate-world-audit.md; substantial factual and argumentative corrections remain proposals. Only mechanical changes in copy-edits.json and the Lake Merritt heading were applied. Added canonical URLs, social previews, author structured data, sitemap and social links. No datePublished is asserted because the June 24 date remains inferred. The alternate draft is now at draft/, marked noindex. Domain routing uses Cloudflare in front of GitHub Pages.
+A comprehensive rights review of the inherited essay images and a full health
+check of every historical external link have not been completed.

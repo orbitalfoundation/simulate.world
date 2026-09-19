@@ -64,19 +64,11 @@
       "tags": "link,article,existential"
     },
     {
-      "label": "Industrial Civilization will collapse by 2040 says British Foreign Office",
+      "label": "Reporting on food-system risks in a global resource model",
       "created": "2015 06 22",
       "url": "https://medium.com/insurge-intelligence/uk-government-backed-scientific-model-flags-risk-of-civilisation-s-collapse-by-2040-4d121e455997",
       "tags": "link,article,existential,threats,media",
-      "notes": "New scientific models supported by the British government’s Foreign Office show that if we don’t change course, in less than three decades industrial civilisation will essentially collapse due to catastrophic food shortages, triggered by a combination of climate change, water scarcity, energy crisis, and political instability.",
-      "parent": "Global Resource Observatory"
-    },
-    {
-      "label": "NASA Study Concludes When Civilization Will End",
-      "created": "2001 01 01",
-      "url": "http://mic.com/articles/85541/nasa-study-concludes-when-civilization-will-end-and-it-s-not-looking-good-for-us",
-      "tags": "link, article, existential, threats, media, nasa, emotion",
-      "notes": "Update: NASA is now clarifying its role in this study. NASA officials released this statement on the study on March 20, which seeks to distance the agency from the paper: 'A soon-to-be published research paper, 'Human and Nature Dynamics (HANDY): Modeling Inequality and Use of Resources in the Collapse or Sustainability of Societies' by University of Maryland researchers Safa Motesharrei and Eugenia Kalnay, and University of Minnesota's Jorge Rivas, was not solicited, directed or reviewed by NASA. It is an independent study by the university researchers utilizing research tools developed for a separate NASA activity. As is the case with all independent research, the views and conclusions in the paper are those of the authors alone. NASA does not endorse the paper or its conclusions.' Read the original story below."
+      "parent": "Scenario modeling · reporting by Nafeez Ahmed"
     },
     {
       "label": "Californa is so over",
@@ -131,7 +123,7 @@
       "parent": "National Geographic"
     },
     {
-      "label": "River catches on fire",
+      "label": "Fire on Bellandur Lake, Bangalore",
       "created": "2001 01 01",
       "tags": "link,article,india,river,pollution",
       "url": "http://www.latimes.com/world/asia/la-fg-fire-springs-forth-on-india-lake-20150619-story.html#page=1"
@@ -202,7 +194,7 @@
     {
       "label": "Digital Democracy",
       "created": "2001 01 01",
-      "url": "http://www.digital-democracy.com",
+      "url": "https://www.digital-democracy.org/",
       "tags": "link,org,climate,social"
     },
     {
@@ -282,89 +274,158 @@
       "label": "Nicholas de Monchaux",
       "created": "2001 01 01",
       "tags": "person",
-      "url": "http://ced.berkeley.edu/ced/faculty-staff/nicholas-de-monchaux"
+      "url": "https://architecture.mit.edu/people/nicholas-de-monchaux",
+      "description": "Architect exploring the connections between design, cities, and complex systems.",
+      "link_label": "Profile"
     },
     {
       "label": "Safa Motesharrei",
       "created": "2001 01 01",
       "tags": "person",
-      "parent": "University of Maryland, The National Socio-Environmental Synthesis Center"
+      "description": "Systems researcher and coauthor of HANDY, a model of inequality and resource use.",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0921800914000615",
+      "link_label": "Research"
     },
     {
       "label": "Eugenia Kalnay",
       "created": "2001 01 01",
       "tags": "person",
-      "parent": "University of Maryland, The National Socio-Environmental Synthesis Center"
+      "description": "Atmospheric scientist working on weather prediction and coupled human–Earth systems.",
+      "url": "https://www2.atmos.umd.edu/~ekalnay/",
+      "link_label": "Profile",
+      "portrait": "portraits/eugenia-kalnay.jpg",
+      "portrait_credit": {
+        "artist": "NASA Goddard Space Flight Center",
+        "license": "Public domain",
+        "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Eugenia_Kalnay_Maniac_Talk.jpg",
+        "date": "2015-03-31"
+      }
     },
     {
       "label": "Jorge Rivas",
       "created": "2001 01 01",
       "tags": "person",
-      "parent": "University of Minnesota, The National Socio-Environmental Synthesis Center"
+      "description": "Coauthor of HANDY, exploring resource use, inequality, and societal dynamics.",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0921800914000615",
+      "link_label": "Research"
     },
     {
       "label": "Stewart Brand",
       "created": "2001 01 01",
       "tags": "person",
-      "parent": "The Long Now Foundation"
+      "description": "Whole Earth Catalog editor and cofounder of the Long Now Foundation.",
+      "url": "https://en.wikipedia.org/wiki/Stewart_Brand",
+      "link_label": "Profile"
     },
     {
       "label": "Valentina Bosetti",
-      "tags": "person"
+      "tags": "person",
+      "description": "Economist studying climate policy, uncertainty, and decision-making.",
+      "url": "https://economics.unibocconi.eu/faculty/valentina-bosetti",
+      "link_label": "Profile"
     },
     {
       "label": "Nick Bostrom",
       "created": "2001 01 01",
       "tags": "person",
-      "parent": "Future of Humanity Institute"
+      "description": "Philosopher investigating existential risk and the long-term future of humanity.",
+      "url": "https://en.wikipedia.org/wiki/Nick_Bostrom",
+      "link_label": "Profile"
     },
     {
-      "label": "Dianne Ackerman",
-      "tags": "person"
+      "label": "Diane Ackerman",
+      "tags": "person",
+      "description": "Poet and naturalist writing about perception, nature, and the human place on Earth.",
+      "url": "https://dianeackerman.com/bio/",
+      "link_label": "Profile",
+      "portrait": "portraits/diane-ackerman.jpg",
+      "portrait_credit": {
+        "artist": "Liz Butler",
+        "license": "CC BY-SA 4.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Diane_Ackerman.jpg",
+        "date": "2011"
+      }
     },
     {
       "label": "Charles Darwin",
-      "tags": "person"
+      "tags": "person",
+      "description": "Naturalist whose theory of evolution connects life through descent and natural selection.",
+      "url": "https://en.wikipedia.org/wiki/Charles_Darwin",
+      "link_label": "Profile",
+      "portrait": "portraits/charles-darwin.jpg",
+      "portrait_credit": {
+        "artist": "Charles_Darwin_seated.jpg: Henry Maull (1829–1914) and John Fox (1832–1907) (Maull & Fox) [3] derivative work: Beao",
+        "license": "Public domain",
+        "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+        "source": "https://commons.wikimedia.org/wiki/File:Charles_Darwin_seated_crop.jpg",
+        "date": "Believed to be 1854"
+      }
     },
     {
       "label": "Jared Diamond",
-      "tags": "person"
+      "tags": "person",
+      "description": "Writer exploring geography, ecology, and the histories of human societies.",
+      "url": "https://en.wikipedia.org/wiki/Jared_Diamond",
+      "link_label": "Profile"
     },
     {
       "label": "Paul Hawken",
-      "tags": "person"
+      "tags": "person",
+      "description": "Environmental writer connecting ecology, business, and social change.",
+      "url": "https://en.wikipedia.org/wiki/Paul_Hawken",
+      "link_label": "Profile"
     },
     {
       "label": "Amanda Ravenhill",
-      "tags": "person"
+      "tags": "person",
+      "description": "Environmental advocate working on systems thinking and climate solutions.",
+      "url": "https://drawdown.psu.edu/people/amanda-ravenhill",
+      "link_label": "Profile"
     },
     {
-      "label": "Derrek Jensen",
-      "tags": "person"
+      "label": "Derrick Jensen",
+      "tags": "person",
+      "description": "Environmental writer and critic of industrial civilization.",
+      "url": "https://derrickjensen.org/",
+      "link_label": "Profile"
     },
     {
       "label": "Elizabeth Kolbert",
-      "tags": "person"
+      "tags": "person",
+      "description": "Journalist investigating climate change and the loss of biodiversity.",
+      "url": "https://en.wikipedia.org/wiki/Elizabeth_Kolbert",
+      "link_label": "Profile"
     },
     {
       "label": "Gaia Vince",
-      "tags": "person"
+      "tags": "person",
+      "description": "Science writer exploring how people are transforming the planet.",
+      "url": "https://en.wikipedia.org/wiki/Gaia_Vince",
+      "link_label": "Profile"
     },
     {
-      "label": "Antifragile",
-      "tags": "person"
+      "label": "J. Stephen Lansing",
+      "tags": "person",
+      "description": "Anthropologist studying Bali’s water temples, cooperation, and emergent order.",
+      "url": "https://en.wikipedia.org/wiki/J._Stephen_Lansing",
+      "link_label": "Profile"
     },
     {
-      "label": "Intertwingled",
-      "tags": "person"
-    },
-    {
-      "label": "Stephen Lansing",
-      "tags": "person"
-    },
-    {
-      "label": "EO Wilson",
-      "tags": "person"
+      "label": "E. O. Wilson",
+      "tags": "person",
+      "description": "Biologist and naturalist writing about biodiversity and the social lives of organisms.",
+      "url": "https://en.wikipedia.org/wiki/E._O._Wilson",
+      "link_label": "Profile",
+      "portrait": "portraits/e-o-wilson.jpg",
+      "portrait_credit": {
+        "artist": "Ragesoss",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+        "source": "https://commons.wikimedia.org/wiki/File:E._O._Wilson_sitting,_October_16,_2007_(cropped).jpg",
+        "date": "2007-10-17"
+      }
     },
     {
       "label": "<h1>Philosophy</h1>"
@@ -452,7 +513,7 @@
       "parent": "Club Of Rome"
     },
     {
-      "label": "Human and Nature Dynamics (HANDY): Modeling Inequality and Use of Resources in the Collapse of Sustainability in Societies",
+      "label": "Human and Nature Dynamics (HANDY): Modeling Inequality and Use of Resources in the Collapse or Sustainability of Societies",
       "created": "2001 01 01",
       "tags": "link, paper, existential, threats, media, ecology, model",
       "url": "http://www.sciencedirect.com/science/article/pii/S0921800914000615",

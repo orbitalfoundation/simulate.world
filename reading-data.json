@@ -112,5 +112,41 @@
     "url": "https://worrydream.com/ExplorableExplanations/",
     "description": "An essay about active reading and making explanations something a reader can investigate.",
     "origin": "Further reading"
+  },
+  {
+    "section": "Books",
+    "title": "Antifragile: Things That Gain from Disorder",
+    "author": "Nassim Nicholas Taleb",
+    "year": "2012",
+    "url": "https://www.penguinrandomhouse.com/books/176227/antifragile-by-nassim-nicholas-taleb/hardcover/",
+    "description": "On systems that benefit from variability, stress, and uncertainty.",
+    "origin": "From the reading notes",
+    "cover": "covers/antifragile.jpg",
+    "isbn": "9780812979688",
+    "cover_source": "https://covers.openlibrary.org/b/isbn/9780812979688-L.jpg?default=false"
+  },
+  {
+    "section": "Books",
+    "title": "Intertwingled: Information Changes Everything",
+    "author": "Peter Morville",
+    "year": "2014",
+    "url": "https://intertwingled.org/intertwingled/",
+    "description": "Information architecture, systems thinking, and the connections between people and information.",
+    "origin": "From the reading notes",
+    "cover": "covers/intertwingled.jpg",
+    "isbn": "9780692225585",
+    "cover_source": "https://covers.openlibrary.org/b/isbn/9780692225585-L.jpg?default=false"
+  },
+  {
+    "section": "Books",
+    "year": "2016",
+    "title": "The Origin and Nature of Life on Earth: The Emergence of the Fourth Geosphere",
+    "author": "Eric Smith & Harold J. Morowitz",
+    "url": "https://www.cambridge.org/core/books/origin-and-nature-of-life-on-earth/CEA8B764107B896A9CBA371F552BE215",
+    "description": "The emergence of life through the connections between geochemistry, metabolism, and the organization of the biosphere.",
+    "origin": "Added at the author’s request during the September 2026 cleanup",
+    "cover": "covers/origin-and-nature-of-life.jpg",
+    "isbn": "9781107121881",
+    "cover_source": "https://covers.openlibrary.org/b/isbn/9781107121881-L.jpg?default=false"
   }
 ]
