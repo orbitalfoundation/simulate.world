@@ -10,13 +10,17 @@ Preserve the nine chapters, including “Mixed messages” and “Emerging super
 
 ## Read next
 
-- [README](../README.md): editing and publication.
+- [Writing principles](WRITING.md): emotional progression, lyrical flow, captions, and minimal corrections.
+
+- [README](../readme.md): editing and publication.
 - [EDITORIAL](../EDITORIAL.md): dating evidence and remaining limits.
 - [Applied audit corrections](../devlog/2026-09-18-audit-corrections.md).
 - [Source-linked audit](../devlog/2026-09-18-correctness-audit.md): proposal snapshot; the correction record supersedes it.
 - [Development log](../devlog/README.md).
 
 ## Current implementation
+
+Canonical local repository: `/Volumes/summer/projects/2020/simulate-world`. Use this directory for project operations; the former Codex checkout was moved here on September 19, 2026. Anselm keeps projects under `/Volumes/summer/projects/<year-of-creation>/<project-name>`; the explicitly chosen folder year for this project is 2020 and does not change the essay dating.
 
 Repository: https://github.com/orbitalfoundation/simulate.world, branch `main`.
 Public site: https://simulate.world/. GitHub Pages publishes the repository root; Cloudflare supplies the domain routing and HTTPS/www redirects. Recheck the current configuration before future infrastructure changes.

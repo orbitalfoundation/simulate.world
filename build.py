@@ -75,7 +75,7 @@ SOCIAL='<div class="social-links"><a href="about/">Anselm Hook ↗</a><a href="h
 
 def shell(title,body,reading=False):
     n=nav('index.html' if reading else '')
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f4f2e9"><title>{title}</title>{metadata(reading)}<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="edition.css?v=20260918-cleanup"><script src="edition.js" defer></script><noscript><style>@media(max-width:760px){{.sidebar{{display:block;position:static;max-height:none}}.mobile-header button{{display:none}}}}</style></noscript></head><body>
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f4f2e9"><title>{title}</title>{metadata(reading)}<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="edition.css?v=20260919-captions"><script src="edition.js" defer></script><noscript><style>@media(max-width:760px){{.sidebar{{display:block;position:static;max-height:none}}.mobile-header button{{display:none}}}}</style></noscript></head><body>
 <a class="skip" href="#content">Skip to content</a><header class="mobile-header"><a class="brand" href="index.html">simulate.world<span class="brand-dot">●</span></a><button id="menu-toggle" aria-expanded="false" aria-controls="chapter-nav">Chapters ＋</button></header>
 <aside class="sidebar"><div class="palette-heading"><a class="brand desktop-brand" href="index.html">simulate.world<span class="brand-dot">●</span></a><button id="desktop-toggle" aria-expanded="true" aria-controls="chapter-nav" aria-label="Collapse chapter menu">−</button></div><div class="sidebar-center"><p class="eyebrow">An essay in nine chapters</p><nav id="chapter-nav" aria-label="Chapters">{n}</nav><div class="reading-progress" aria-hidden="true"><div id="progress-fill"></div></div></div><div class="sidebar-bottom"><a href="reading.html">Reading list ↗</a><time datetime="2015-06-24">June 24, 2015</time></div></aside>
 <main>{body}</main></body></html>'''
@@ -100,10 +100,11 @@ for ci,(slug,chapter) in enumerate(zip(slugs,thesis['children']),1):
         captions=[plain(c.get('notes','')).strip() for c in slide.get('children',[]) if c.get('kind')=='text']
         labeltext=' · '.join(captions) if captions else (label if meaningful else chapter['label'])
         body+=f'<article class="original-slide" id="{slug}-{si}" data-source-chapter="{ci}" data-source-slide="{si}"><div class="slide-position"><span>{ci:02}.{si:02}</span><a href="#{slug}-{si}" aria-label="Link to part {si} of {esc(chapter["label"],quote=True)}">Permalink ↗</a></div><figure class="original-figure">{image(slide["art"],labeltext)}'
-        if captions:body+='<figcaption class="original-caption">'+''.join('<span>'+esc(t)+'</span>' for t in captions)+'</figcaption>'
-        elif meaningful:body+='<figcaption class="original-caption">'+esc(label)+'</figcaption>'
-        body+=('<p class="image-context">'+esc(slide['image_note'])+'</p>' if slide.get('image_note') else '')
-        body+='</figure><div class="prose original-text">'+render_notes(slide,ci,si)+'</div>'
+        if slide.get('image_note'):body+='<figcaption class="image-context">'+inline(tidy(slide['image_note']))+'</figcaption>'
+        body+='</figure>'
+        if captions:body+='<h3 class="original-caption">'+''.join('<span>'+esc(t)+'</span>' for t in captions)+'</h3>'
+        elif meaningful:body+='<h3 class="original-caption">'+esc(label)+'</h3>'
+        body+='<div class="prose original-text">'+render_notes(slide,ci,si)+'</div>'
         body+='</article>'
     if ci<len(slugs):body+=f'<a class="next" href="#{slugs[ci]}"><span>Next chapter<strong>{esc(thesis["children"][ci]["label"])}</strong></span><span aria-hidden="true">↗</span></a>'
     else:body+='<a class="next" href="reading.html"><span>Continue exploring<strong>Reading list</strong></span><span aria-hidden="true">↗</span></a>'

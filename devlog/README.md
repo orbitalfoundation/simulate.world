@@ -1,5 +1,9 @@
 # Development log
 
+- [September 19, 2026 — Restore lyrical flow](2026-09-19-lyrical-flow.md)
+
+- [September 19, 2026 — Project location](2026-09-19-project-location.md)
+
 - [September 19, 2026 — Separate working context](2026-09-19-context-split.md)
 
 - [September 18, 2026 — Applied audit corrections and reading-list cleanup](2026-09-18-audit-corrections.md)

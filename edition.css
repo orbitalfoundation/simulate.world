@@ -88,3 +88,9 @@ footer{padding:55px 5vw 55px var(--essay-inset)}
 @media(max-width:650px){#voices .resource-list{grid-template-columns:1fr}}
 
 .about-page{min-height:100vh;max-width:900px}.about-page>p{font-size:1.15rem;line-height:1.8;max-width:640px}.about-links{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;margin:2rem 0}.about-page .reading-footer{display:flex;gap:2rem}
+
+/* Image notes support the picture; the essay heading resumes the reading line. */
+.original-figure .image-context{box-sizing:border-box;width:calc(100% - 52px);max-width:56ch;margin:16px auto 0;padding:0;text-align:center;font:italic 14px/1.65 Georgia,serif;color:var(--muted);overflow-wrap:anywhere}
+.image-context a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+h3.original-caption{max-width:610px;padding:0;margin:0 auto 22px;font-weight:normal;letter-spacing:normal}
+@media(max-width:760px){.original-figure .image-context{font-size:14px}h3.original-caption{padding:0}}
