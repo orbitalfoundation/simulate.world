@@ -74,3 +74,5 @@ footer{padding:55px 5vw 55px var(--essay-inset)}
 @media(max-width:760px){.presentation-link{padding:20px}.reading-page .presentation-link h2{font-size:26px}}
 
 .presentation-link{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:25px;align-items:center}.presentation-thumbnail{display:block;position:relative}.presentation-thumbnail img{display:block;width:100%;height:auto}.presentation-thumbnail span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#233e32e8;color:white;border-radius:50%;width:46px;height:46px;display:grid;place-items:center;font-size:20px}.presentation-thumbnail:hover span{background:#152d23}.presentation-copy>p:last-child{font:12px/1.6 Arial,sans-serif;color:var(--muted);margin:0}@media(max-width:760px){.presentation-link{grid-template-columns:1fr;gap:20px}}
+
+.social-links{display:flex;flex-wrap:wrap;gap:12px 25px;margin:25px 0;font:13px/1.6 Arial,sans-serif}.social-links a{color:var(--ink)}.cover-author{display:block;margin:22px 0 10px;color:inherit;font:14px/1.5 Arial,sans-serif}.sidebar-bottom .author-link{width:auto;font-size:9px;padding:0}

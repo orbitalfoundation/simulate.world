@@ -6,6 +6,10 @@ from html.parser import HTMLParser
 ROOT = Path(__file__).resolve().parent
 ORIGINAL_IMAGES = ROOT/'images'
 thesis = json.loads((ROOT/'source/thesis.json').read_text())
+copy_edits=json.loads((ROOT/'copy-edits.json').read_text())
+def tidy(text):
+    for before,after in copy_edits.items():text=text.replace(before,after)
+    return text
 slugs = ['our-world','mixed-messages','emerging-superpowers','looking-closer','existential-threats','hacking-the-system','building-digital-models','examples','participate']
 esc = html.escape
 
@@ -50,11 +54,26 @@ def nav(prefix=''):
             subprocess.run(['sips','-Z','160','-s','format','jpeg',str(source),'--out',str(thumb)],check=True,stdout=subprocess.DEVNULL)
         rows.append(f'<a href="{prefix}#{slug}"><img src="thumbnails/{slug}.jpg" alt="" width="48" height="34"><span class="chapter-number">{i:02}</span><span class="chapter-name">{esc(c["label"])}</span></a>')
     return ''.join(rows)
+def metadata(reading):
+    url='https://simulate.world/'+('reading.html' if reading else '')
+    title='Reading list — Simulate World, by Anselm Hook' if reading else 'Simulate World — Civic models, ecology & collective decisions | Anselm Hook'
+    description=('Books, essays, organizations and a video presentation on systems thinking, ecology and civic simulation, selected by Anselm Hook.' if reading else 'Anselm Hook’s essay on open digital models, ecology and collective decision-making: giving communities tools to understand and shape their world.')
+    graph={'@context':'https://schema.org','@type':'CollectionPage' if reading else 'Article','name':title,'description':description,'url':url,'inLanguage':'en','author':{'@type':'Person','name':'Anselm Hook','url':'https://x.com/anselm','sameAs':['https://x.com/anselm']},'image':'https://simulate.world/images/glacier.jpg','isPartOf':{'@type':'WebSite','name':'Simulate World','url':'https://simulate.world/'}}
+    if not reading:graph.update(headline='Simulate World: Computationally predicting the future of our planet',articleSection=[c['label'] for c in thesis['children']])
+    tags=f'<meta name="description" content="{esc(description,quote=True)}"><meta name="author" content="Anselm Hook"><link rel="canonical" href="{url}"><meta name="robots" content="index,follow,max-image-preview:large">'
+    for key,value in {'og:type':'website' if reading else 'article','og:site_name':'Simulate World','og:title':title,'og:description':description,'og:url':url,'og:image':'https://simulate.world/images/glacier.jpg','og:image:alt':'A mountain lake beneath a glacier','og:locale':'en_US'}.items():
+        tags+=f'<meta property="{key}" content="{esc(value,quote=True)}">'
+    for key,value in {'twitter:card':'summary_large_image','twitter:creator':'@anselm','twitter:site':'@orbitalfoundation','twitter:title':title,'twitter:description':description,'twitter:image':'https://simulate.world/images/glacier.jpg','twitter:image:alt':'A mountain lake beneath a glacier'}.items():
+        tags+=f'<meta name="{key}" content="{esc(value,quote=True)}">'
+    return tags+'<script type="application/ld+json">'+json.dumps(graph,ensure_ascii=False).replace('<','\\u003c')+'</script>'
+
+SOCIAL='<div class="social-links"><a href="https://x.com/anselm" rel="me">Anselm Hook · @anselm ↗</a><a href="https://x.com/orbitalfoundation">@orbitalfoundation ↗</a></div>'
+
 def shell(title,body,reading=False):
     n=nav('index.html' if reading else '')
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f4f2e9"><title>{title}</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="edition.css"><script src="edition.js" defer></script><noscript><style>@media(max-width:760px){{.sidebar{{display:block;position:static;max-height:none}}.mobile-header button{{display:none}}}}</style></noscript></head><body>
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f4f2e9"><title>{title}</title>{metadata(reading)}<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="edition.css"><script src="edition.js" defer></script><noscript><style>@media(max-width:760px){{.sidebar{{display:block;position:static;max-height:none}}.mobile-header button{{display:none}}}}</style></noscript></head><body>
 <a class="skip" href="#content">Skip to content</a><header class="mobile-header"><a class="brand" href="index.html">simulate.world<span class="brand-dot">●</span></a><button id="menu-toggle" aria-expanded="false" aria-controls="chapter-nav">Chapters ＋</button></header>
-<aside class="sidebar"><div class="palette-heading"><a class="brand desktop-brand" href="index.html">simulate.world<span class="brand-dot">●</span></a><button id="desktop-toggle" aria-expanded="true" aria-controls="chapter-nav" aria-label="Collapse chapter menu">−</button></div><div class="sidebar-center"><p class="eyebrow">An essay in nine chapters</p><nav id="chapter-nav" aria-label="Chapters">{n}</nav><div class="reading-progress" aria-hidden="true"><div id="progress-fill"></div></div></div><div class="sidebar-bottom"><a href="reading.html">Reading list ↗</a><span>Anselm Hook</span><time datetime="2015-06-24">June 24, 2015</time></div></aside>
+<aside class="sidebar"><div class="palette-heading"><a class="brand desktop-brand" href="index.html">simulate.world<span class="brand-dot">●</span></a><button id="desktop-toggle" aria-expanded="true" aria-controls="chapter-nav" aria-label="Collapse chapter menu">−</button></div><div class="sidebar-center"><p class="eyebrow">An essay in nine chapters</p><nav id="chapter-nav" aria-label="Chapters">{n}</nav><div class="reading-progress" aria-hidden="true"><div id="progress-fill"></div></div></div><div class="sidebar-bottom"><a href="reading.html">Reading list ↗</a><a class="author-link" href="https://x.com/anselm" rel="me">Anselm Hook ↗</a><time datetime="2015-06-24">June 24, 2015</time></div></aside>
 <main>{body}</main></body></html>'''
 
 # Minimal factual corrections; unmodified source retained in source/thesis.json.
@@ -66,15 +85,15 @@ def edited_notes(text, chapter, slide):
     if (chapter,slide) in corrections:
         before,after=corrections[(chapter,slide)]
         assert before in text
-        return text.replace(before,after,1)
-    return text
+        return tidy(text.replace(before,after,1))
+    return tidy(text)
 
-body=f'''<section class="cover" id="top"><div class="edition-cover-image">{image('glacier.jpg','A snowy mountain lake.',True)}</div><div class="cover-shade"></div><div class="cover-top"><span>Ecology · Models · Civic life</span><span>2015</span></div><div class="cover-copy"><p class="eyebrow">World Makers</p><h1>Simulate<br>World.</h1><p>Computationally predicting<br>the future of our planet.</p><a class="begin" href="#our-world">Begin the thesis <span aria-hidden="true">↓</span></a></div><div class="cover-bottom"><span>Anselm Hook</span><time datetime="2015-06-24">June 24, 2015</time><span>Nine chapters</span></div></section>
+body=f'''<section class="cover" id="top"><div class="edition-cover-image">{image('glacier.jpg','A snowy mountain lake.',True)}</div><div class="cover-shade"></div><div class="cover-top"><span>Ecology · Models · Civic life</span><span>2015</span></div><div class="cover-copy"><p class="eyebrow">World Makers</p><h1>Simulate<br>World.</h1><p>Computationally predicting<br>the future of our planet.</p><a class="cover-author" href="https://x.com/anselm" rel="me">An essay by Anselm Hook ↗</a><a class="begin" href="#our-world">Begin the thesis <span aria-hidden="true">↓</span></a></div><div class="cover-bottom"><a class="author-link" href="https://x.com/anselm" rel="me">Anselm Hook ↗</a><time datetime="2015-06-24">June 24, 2015</time><span>Nine chapters</span></div></section>
 <div id="content"></div>'''
 for ci,(slug,chapter) in enumerate(zip(slugs,thesis['children']),1):
     body+=f'<section class="chapter original-chapter" id="{slug}" aria-labelledby="{slug}-title"><header class="chapter-heading"><p class="eyebrow">{ci:02} / {len(thesis["children"]):02} · 2015</p><h2 id="{slug}-title">{esc(chapter["label"])}</h2><p class="chapter-length">{len(chapter["children"])} parts</p></header>'
     for si,slide in enumerate(chapter['children'],1):
-        label=slide.get('label','');meaningful=label not in ['nothing','details','', 'disorder']
+        label=tidy(slide.get('label',''));label='Lake Merritt' if label=='Lake Merrit' else label;meaningful=label not in ['nothing','details','', 'disorder']
         captions=[plain(c.get('notes','')).strip() for c in slide.get('children',[]) if c.get('kind')=='text']
         labeltext=' · '.join(captions) if captions else (label if meaningful else chapter['label'])
         body+=f'<article class="original-slide" id="{slug}-{si}" data-source-chapter="{ci}" data-source-slide="{si}"><div class="slide-position"><span>{ci:02}.{si:02}</span><a href="#{slug}-{si}" aria-label="Link to part {si} of {esc(chapter["label"],quote=True)}">Permalink ↗</a></div><figure class="original-figure">{image(slide["art"],labeltext)}'
@@ -85,8 +104,8 @@ for ci,(slug,chapter) in enumerate(zip(slugs,thesis['children']),1):
     if ci<len(slugs):body+=f'<a class="next" href="#{slugs[ci]}"><span>Next chapter<strong>{esc(thesis["children"][ci]["label"])}</strong></span><span aria-hidden="true">↗</span></a>'
     else:body+='<a class="next" href="reading.html"><span>Continue exploring<strong>Reading list</strong></span><span aria-hidden="true">↗</span></a>'
     body+='</section>'
-body+='''<footer><p class="eyebrow">Simulate World</p><h2>World Makers</h2><p>Anselm Hook · <time datetime="2015-06-24">June 24, 2015</time></p><div class="footer-bottom"><a href="reading.html">Reading list ↗</a><a href="#top">Back to top ↑</a></div></footer>'''
-(ROOT/'index.html').write_text(shell('Simulate World — An essay by Anselm Hook',body))
+body+='''<footer><p class="eyebrow">Simulate World</p><h2>World Makers</h2><p>Anselm Hook · <time datetime="2015-06-24">June 24, 2015</time></p>'''+SOCIAL+'''<div class="footer-bottom"><a href="reading.html">Reading list ↗</a><a href="#top">Back to top ↑</a></div></footer>'''
+(ROOT/'index.html').write_text(shell('Simulate World — Civic models &amp; collective decisions | Anselm Hook',body))
 print('Rendered',sum(len(c['children']) for c in thesis['children']),'original parts.')
 reading=json.loads((ROOT/'reading-data.json').read_text())
 r='''<div class="reading-page" id="content"><header><p class="eyebrow">Simulate World · Reading list</p><h1>Reading list.</h1><p>Books, essays, and models for thinking about our world.</p><p class="section-note">A companion to the essay, from ecological relationships and collective decision-making to models we can explore.</p><nav class="reading-nav" aria-label="Reading categories"><a href="#books">Books</a><a href="#papers">Essays &amp; papers</a><a href="#interactive">Interactive reading</a><a href="#news">News &amp; links</a><a href="#organizations">Organizations</a><a href="#voices">Voices</a><a href="#philosophy">Philosophy</a><a href="#models">Models</a></nav></header>'''
@@ -113,10 +132,10 @@ for name,items in groups:
  title='Organizations' if name=='Orgs' else name
  r+=f'<section class="resource-section" id="{section_ids[name]}"><h2>{esc(title)}</h2><ul class="resource-list">'
  for item in items:
-  label=esc(item['label']);url=item.get('url',item.get('link',''))
+  label=esc(tidy(item['label']));url=item.get('url',item.get('link',''))
   title=f'<a href="{esc(url,quote=True)}">{label} <span aria-hidden="true">↗</span></a>' if url else label
   parent=f'<span class="resource-context">{esc(item["parent"])}</span>' if item.get('parent') else ''
   r+=f'<li>{title}{parent}</li>'
  r+='</ul></section>'
-r+='''<div class="reading-footer"><div class="edition-links"><a href="index.html">Return to the essay ↗</a></div></div></div>'''
+r+='''<div class="reading-footer">'''+SOCIAL+'''<div class="edition-links"><a href="index.html">Return to the essay ↗</a></div></div></div>'''
 (ROOT/'reading.html').write_text(shell('Reading list — Simulate World (2015)',r,True))

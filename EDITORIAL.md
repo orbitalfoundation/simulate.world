@@ -41,3 +41,7 @@ Replaced the full-height sidebar with a fixed top-left thumbnail palette. Chapte
 Added all 73 entries from source/resources.json under their five existing categories. Kept original destination URLs and labels; omitted placeholder dates and long copied excerpts. The directory's outbound links have not yet had a full link-health or factual review. Earlier curated readings remain above the directory, so some references intentionally appear in both contexts.
 
 Added five ISBN-matched Open Library cover images, stored locally in covers/. ISBNs and source URLs are recorded in reading-data.json. Visually checked all five jackets. Checked desktop and 390px mobile layouts.
+
+## September 2026 correctness audit and discovery
+
+Performed a complete read-through of the 50 parts and resource list. Source-linked editorial audit delivered separately as simulate-world-audit.md; substantial factual and argumentative corrections remain proposals. Only mechanical changes in copy-edits.json and the Lake Merritt heading were applied. Added canonical URLs, social previews, author structured data, sitemap and social links. No datePublished is asserted because the June 24 date remains inferred. The alternate draft is now at draft/, marked noindex. Domain routing uses Cloudflare in front of GitHub Pages.
