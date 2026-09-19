@@ -2,6 +2,9 @@
 
 An essay on ecology, civic models, and collective decisions, with a companion reading list.
 
+For ongoing work, start with [project context](docs/CONTEXT.md). It records the
+editorial decisions, current implementation, and open work for a focused task.
+
 ## Preview
 
 Run `python3 -m http.server 8765` from this directory. Open http://localhost:8765/.
@@ -30,6 +33,12 @@ the essay, reading list, and About page. copy-edits.json contains narrow mechani
 approved factual revisions are incorporated in the source and documented in `devlog/`.
 
 ## Revision history
+
+### September 19, 2026 — Separate working context
+
+Added a Markdown handoff for continuing Simulate World independently of the newer
+Save the World project. The shared conversation remains as history. No essay or
+website behavior changed; see the [devlog](devlog/2026-09-19-context-split.md).
 
 ### September 18, 2026 — Cleanup together
 
