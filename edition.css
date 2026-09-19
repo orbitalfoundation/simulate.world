@@ -1,0 +1,76 @@
+.sidebar-center{margin:auto 0}.sidebar .eyebrow{margin-bottom:15px}nav{gap:2px}nav a{min-height:37px}.reading-progress{margin-top:20px}.sidebar-bottom{gap:13px}.edition-cover-image{position:absolute;inset:0;z-index:-2}.edition-cover-image img{width:100%;height:100%;object-fit:cover;object-position:center 45%}.cover-shade{background:linear-gradient(180deg,#12312935,#12312908 25%,#123129c7)}.cover h1{font-size:clamp(74px,9vw,128px)}.edition-intro{padding:55px max(42px,9%);border-bottom:1px solid var(--line)}.edition-intro>p{max-width:650px;font:17px/1.8 Georgia,serif}.edition-intro .eyebrow{font:10px/1.5 Arial,sans-serif;letter-spacing:2px}.edition-intro .date-note{font:12px/1.8 Arial,sans-serif;color:var(--muted)}.edition-links{display:flex;gap:24px;flex-wrap:wrap;font-size:11px;margin-top:25px}.original-chapter{padding-bottom:75px}.original-chapter h2{max-width:750px}.chapter-length{font-size:11px;color:var(--muted)}.original-slide{margin:0 0 70px;scroll-margin-top:50px}.slide-position{display:flex;justify-content:space-between;font-size:9px;letter-spacing:1.5px;color:var(--muted);margin-bottom:13px;border-top:1px solid var(--line);padding-top:18px}.slide-position a{text-decoration:none;font-size:9px;letter-spacing:0}.original-figure{margin:0 -4% 35px}.original-figure img{width:100%;height:auto;max-height:780px;object-fit:contain;background:#e9ebe3}.original-caption{padding:18px 4% 0;margin:0;font:23px/1.5 Georgia,serif;color:var(--ink)}.original-caption span{display:block}.original-caption span+span{margin-top:5px}.original-caption:has(span:nth-child(4)){display:flex;flex-wrap:wrap;gap:10px 18px;font:11px/1.7 Arial,sans-serif;letter-spacing:1px}.original-caption:has(span:nth-child(4)) span{margin:0}.original-text p{overflow-wrap:anywhere}.original-text a{font-size:.9em}.fact-note{max-width:610px;margin:24px auto;font-size:12px;border-top:1px solid var(--line);color:var(--muted)}.fact-note p{line-height:1.8}.reading-page{padding:75px max(42px,9%)}.reading-page header{max-width:700px;margin-bottom:45px}.reading-page header>p:not(.eyebrow){font:20px/1.6 Georgia,serif;color:var(--muted)}.reading-page h1{font-size:72px;color:var(--ink);margin-top:20px}.reading-page h2{font-size:40px;letter-spacing:-1px;margin:60px 0 15px}.reading-page .section-note{font-size:13px;line-height:1.8;color:var(--muted);max-width:650px}.reading-item{display:grid;grid-template-columns:55px 1fr;gap:22px;border-top:1px solid var(--line);padding:24px 0}.reading-item .year{font:12px/1.8 Arial,sans-serif;color:var(--accent)}.reading-item h3{font:25px/1.25 Georgia,serif;margin:0 0 10px}.reading-item h3 a{text-decoration:none}.reading-item h3 a:hover{text-decoration:underline}.reading-item .author{font-size:11px;color:var(--muted);margin-bottom:12px}.reading-item p{font:16px/1.7 Georgia,serif;margin-bottom:0}.reading-origin{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-top:12px;display:block}.reading-nav{display:flex;flex-wrap:wrap;gap:20px;font-size:12px;margin-top:28px}.reading-footer{font-size:12px;line-height:1.8;color:var(--muted);margin-top:50px;padding-top:25px;border-top:1px solid var(--line)}
+@media(max-height:780px) and (min-width:761px){.sidebar{padding-top:22px;padding-bottom:22px}.sidebar-center{margin:30px 0}.sidebar-bottom{margin-top:auto}nav a{min-height:31px}.reading-progress,.reading-label{display:none}}
+@media(max-width:760px){nav a{min-height:44px}.edition-intro{padding:35px 26px}.original-slide{scroll-margin-top:90px;margin-bottom:50px}.original-figure{margin:0 -26px 26px}.original-figure img{max-height:none}.original-caption{padding:15px 26px 0;font-size:21px}.original-chapter h2{overflow-wrap:break-word;font-size:44px}.chapter-heading{margin-bottom:35px}.sidebar.open .sidebar-bottom{display:flex;margin-top:24px}.reading-page{padding:45px 26px}.reading-page h1{font-size:54px}.reading-page h2{font-size:34px}.reading-item{grid-template-columns:40px 1fr;gap:13px}.reading-item h3{font-size:23px}.cover h1{font-size:78px}.edition-links{gap:16px}.reading-label{display:none}}
+@media print{.original-figure img{max-height:500px}.original-slide{break-inside:avoid}.edition-intro{padding:25px 0}.original-chapter{padding:35px 0}.edition-links,.slide-position a{display:none}}
+/* Long chapters use immediate anchor jumps to preserve the reader's position. */
+html{scroll-behavior:auto}
+
+/* Floating chapter palette: a compact, image-led index over the page. */
+:root{--essay-inset:max(280px,calc((100vw - 760px)/2))}
+main{margin-left:0}
+.sidebar{inset:16px auto auto 16px;width:236px;padding:13px;background:rgba(244,242,233,.96);border:1px solid #fff9;box-shadow:3px 4px 0 #183f3440;max-height:calc(100svh - 32px);overflow:auto;display:block}
+.palette-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px}
+.sidebar .brand{font-size:19px;letter-spacing:-1px}
+#desktop-toggle{border:0;background:none;color:var(--ink);font:22px/1 Arial,sans-serif;cursor:pointer;padding:3px 7px;min-width:28px;min-height:28px}
+.sidebar-center{margin:0}
+.sidebar .eyebrow{font-size:8px;letter-spacing:1.4px;margin:0 0 8px}
+#chapter-nav{gap:4px}
+#chapter-nav a{display:grid;grid-template-columns:48px 15px 1fr;gap:7px;min-height:40px;padding:3px;color:#354d40;font-size:11px;line-height:1.3;background:#ffffff40;transition:background .12s}
+#chapter-nav a img{width:48px;height:34px;object-fit:cover;filter:saturate(.85)}
+#chapter-nav a .chapter-number{font-size:8px;color:#65765b}
+#chapter-nav a .chapter-name{font-size:11px;color:inherit}
+#chapter-nav a:hover{background:#dee4d2}
+#chapter-nav a[aria-current]{background:#294c3c;color:#fff}
+#chapter-nav a[aria-current] .chapter-number{color:#d9e4bc}
+#chapter-nav a[aria-current]:before{display:none}
+.reading-progress{display:block;margin:12px 0 0;height:2px}
+.sidebar-bottom{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-between;gap:7px;margin-top:12px;font-size:9px;line-height:1.5}
+.sidebar-bottom a{width:100%;font-size:11px;color:var(--ink);padding:3px 0}
+.sidebar.folded .sidebar-center,.sidebar.folded .sidebar-bottom{display:none}
+.sidebar.folded .palette-heading{margin:0}
+.cover{padding-left:var(--essay-inset);padding-right:5vw}
+.chapter{padding:90px 5vw 75px var(--essay-inset)}
+.original-figure{margin:28px -5vw 35px calc(-1 * var(--essay-inset))}
+.original-figure img{max-height:780px}
+.original-caption{padding:18px 5vw 0 var(--essay-inset)}
+.reading-page{padding:85px 5vw 75px var(--essay-inset)}
+footer{padding:55px 5vw 55px var(--essay-inset)}
+@media(max-width:760px){
+ :root{--essay-inset:26px}
+ .mobile-header{position:fixed;top:12px;left:12px;width:calc(100% - 24px);min-height:50px;padding:5px 14px;box-shadow:2px 3px 0 #183f3440;border:1px solid #fff9;background:rgba(244,242,233,.97)}
+ .sidebar{display:none;top:70px;left:12px;width:min(290px,calc(100vw - 24px));max-height:calc(100svh - 82px);padding:12px}
+ .sidebar.open{display:block}
+ .palette-heading{display:none}
+ .sidebar.folded .sidebar-center{display:block}
+ .sidebar.open .sidebar-bottom{display:flex;margin-top:12px}
+ #chapter-nav a{min-height:44px;grid-template-columns:52px 18px 1fr;gap:9px}
+ #chapter-nav a img{width:52px;height:36px}
+ #chapter-nav a .chapter-name{font-size:12px}
+ .cover{padding:95px 26px 25px;min-height:700px;height:100svh}
+ .chapter{padding:75px 26px 65px}
+ .original-figure{margin:28px -26px 26px}
+ .original-figure img{max-height:none}
+ .original-caption{padding:15px 26px 0}
+ .reading-page{padding:105px 26px 45px}
+ footer{padding:45px 26px}
+}
+@media print{.sidebar,.mobile-header{display:none}.cover,.chapter,.reading-page,footer{padding-left:0;padding-right:0}.original-figure{margin:25px 0}.original-caption{padding-left:0;padding-right:0}}
+@media(max-width:760px){.sidebar{background:rgba(244,242,233,.99)}}
+
+/* Book jackets and the wider reading directory. */
+.reading-item.book-item{grid-template-columns:110px minmax(0,1fr);gap:26px;align-items:start}
+.book-cover{display:block;width:110px;height:auto;max-height:175px;object-fit:contain;object-position:top left;box-shadow:2px 3px 5px #233e3224}
+.book-item .year{display:block;margin-bottom:7px}
+.reading-page section{scroll-margin-top:30px}
+.resource-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:30px}
+.resource-list li{border-top:1px solid var(--line);padding:16px 0;font:18px/1.45 Georgia,serif;overflow-wrap:anywhere}
+.resource-list a{text-decoration:none}.resource-list a:hover{text-decoration:underline}
+.resource-context{display:block;font:11px/1.6 Arial,sans-serif;color:var(--muted);margin-top:7px}
+@media(max-width:760px){.reading-item.book-item{grid-template-columns:76px minmax(0,1fr);gap:18px}.book-cover{width:76px;max-height:125px}.book-item h3{font-size:22px}.resource-list{grid-template-columns:1fr}.reading-page section{scroll-margin-top:85px}}
+.reading-nav{flex-direction:row;gap:8px 22px}.reading-nav a{min-height:32px;display:inline-flex;align-items:center}
+
+.presentation-link{padding:24px 26px;border:1px solid var(--line);background:#e8ecdf;margin:0 0 45px}
+.presentation-link .eyebrow{margin:0 0 12px}.reading-page .presentation-link h2{font:30px/1.25 Georgia,serif;letter-spacing:-.4px;margin:0 0 12px}.presentation-link h2 a{text-decoration:none}.presentation-link h2 a:hover{text-decoration:underline}.presentation-link>p:last-child{font:12px/1.6 Arial,sans-serif;color:var(--muted);margin:0}
+@media(max-width:760px){.presentation-link{padding:20px}.reading-page .presentation-link h2{font-size:26px}}
+
+.presentation-link{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:25px;align-items:center}.presentation-thumbnail{display:block;position:relative}.presentation-thumbnail img{display:block;width:100%;height:auto}.presentation-thumbnail span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#233e32e8;color:white;border-radius:50%;width:46px;height:46px;display:grid;place-items:center;font-size:20px}.presentation-thumbnail:hover span{background:#152d23}.presentation-copy>p:last-child{font:12px/1.6 Arial,sans-serif;color:var(--muted);margin:0}@media(max-width:760px){.presentation-link{grid-template-columns:1fr;gap:20px}}

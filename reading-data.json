@@ -1,0 +1,116 @@
+[
+  {
+    "section": "Books",
+    "year": "2013",
+    "title": "Hyperobjects: Philosophy and Ecology after the End of the World",
+    "author": "Timothy Morton",
+    "url": "https://www.upress.umn.edu/9781452940557/hyperobjects/",
+    "description": "Objects and processes that exceed the scales at which we ordinarily perceive the world.",
+    "origin": "Cited in the essay",
+    "cover": "covers/hyperobjects.jpg",
+    "cover_source": "https://covers.openlibrary.org/b/isbn/9780816689231-L.jpg",
+    "isbn": "9780816689231"
+  },
+  {
+    "section": "Books",
+    "year": "2007",
+    "title": "Under a Green Sky",
+    "author": "Peter D. Ward",
+    "url": "https://agris.fao.org/search/en/providers/122535/records/65de0a856eef00c2ce9f8a07",
+    "description": "Past mass extinctions and their implications for thinking about environmental change.",
+    "origin": "Cited in the essay",
+    "cover": "covers/under-a-green-sky.jpg",
+    "cover_source": "https://covers.openlibrary.org/b/isbn/9780061137914-L.jpg",
+    "isbn": "9780061137914"
+  },
+  {
+    "section": "Books",
+    "year": "1972",
+    "title": "The Limits to Growth",
+    "author": "Donella H. Meadows, Dennis L. Meadows, Jørgen Randers & William W. Behrens III",
+    "url": "https://www.clubofrome.org/publication/the-limits-to-growth/",
+    "description": "An early study of interacting global constraints using computer-generated scenarios.",
+    "origin": "From the reading notes",
+    "cover": "covers/limits-to-growth.jpg",
+    "cover_source": "https://covers.openlibrary.org/b/isbn/0876631650-L.jpg",
+    "isbn": "0876631650"
+  },
+  {
+    "section": "Books",
+    "year": "2006",
+    "title": "Perfect Order: Recognizing Complexity in Bali",
+    "author": "J. Stephen Lansing",
+    "url": "https://www.jstor.org/stable/j.ctt12f4gz",
+    "description": "A book-length companion to the water-temple research discussed in the essay: irrigation, cooperation, and emergent order.",
+    "origin": "Further reading",
+    "cover": "covers/perfect-order.jpg",
+    "cover_source": "https://covers.openlibrary.org/b/isbn/9780691027272-L.jpg",
+    "isbn": "9780691027272"
+  },
+  {
+    "section": "Books",
+    "year": "2008",
+    "title": "Thinking in Systems: A Primer",
+    "author": "Donella H. Meadows · edited by Diana Wright",
+    "url": "https://donellameadows.org/systems-thinking-book-sale/",
+    "description": "An introduction to feedback, stocks, flows, and the behavior of systems.",
+    "origin": "Further reading",
+    "cover": "covers/thinking-in-systems.jpg",
+    "cover_source": "https://covers.openlibrary.org/b/isbn/9781603580557-L.jpg",
+    "isbn": "9781603580557"
+  },
+  {
+    "section": "Essays & papers",
+    "year": "2015",
+    "title": "The Great Grief: How To Cope with Losing Our World",
+    "author": "Per Espen Stoknes · May 14, 2015",
+    "url": "https://www.commondreams.org/views/2015/05/14/great-grief-how-cope-losing-our-world",
+    "description": "On making room for environmental grief before returning to engagement. A close companion to Mixed Messages.",
+    "origin": "From the reading notes"
+  },
+  {
+    "section": "Essays & papers",
+    "year": "2015",
+    "title": "Weaponized Sacredness",
+    "author": "Sarah Perry · May 7, 2015",
+    "url": "https://www.ribbonfarm.com/2015/05/07/weaponized-sacredness/",
+    "description": "An inquiry into sacred values, social coordination, and unforeseen consequences.",
+    "origin": "From the reading notes"
+  },
+  {
+    "section": "Essays & papers",
+    "year": "1993",
+    "title": "Emergent Properties of Balinese Water Temple Networks",
+    "author": "J. Stephen Lansing & James N. Kremer",
+    "url": "https://anthrosource.onlinelibrary.wiley.com/doi/abs/10.1525/aa.1993.95.1.02a00050",
+    "description": "The research at the heart of the thesis’s Balinese water-temple example: ecological simulation and the organization of irrigation.",
+    "origin": "Cited in the essay"
+  },
+  {
+    "section": "Essays & papers",
+    "year": "2014",
+    "title": "Human and Nature Dynamics (HANDY)",
+    "author": "Safa Motesharrei, Jorge Rivas & Eugenia Kalnay",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0921800914000615",
+    "description": "A simplified model exploring inequality and resource use through scenarios.",
+    "origin": "From the reading notes"
+  },
+  {
+    "section": "Essays & papers",
+    "year": "1999",
+    "title": "Leverage Points: Places to Intervene in a System",
+    "author": "Donella H. Meadows",
+    "url": "https://www.donellameadows.org/wp-content/userfiles/Leverage_Points.pdf",
+    "description": "A framework for thinking about where changes to a system may matter most.",
+    "origin": "Further reading"
+  },
+  {
+    "section": "Interactive reading",
+    "year": "2011",
+    "title": "Explorable Explanations",
+    "author": "Bret Victor",
+    "url": "https://worrydream.com/ExplorableExplanations/",
+    "description": "An essay about active reading and making explanations something a reader can investigate.",
+    "origin": "Further reading"
+  }
+]

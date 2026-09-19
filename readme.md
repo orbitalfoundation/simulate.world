@@ -1,4 +1,25 @@
-This is an essay that explores topics in how to use computer simulations to help communities make wiser decisions.
+# Simulate World
 
-This is also a simulator that lets people explore what such computer simulations could do. The simulator is simple - vector based not cellular automata based. It doesn't exploit the gpu etc. It's designed to be visually accessible to novices.
+An essay by Anselm Hook, with a companion reading list.
 
+## Preview
+
+Run `python3 -m http.server 8765` from this directory. Open http://localhost:8765/.
+The main essay is at `/`; the reading list is at `/reading.html`. The alternate
+contemporary draft is preserved at `/draft/`. `/about/` and `/news/` redirect to
+the essay and reading list respectively.
+
+## Editing
+
+`build.py` generates the essay and reading list from `source/thesis.json`,
+`source/resources.json`, and `reading-data.json`. Run `python3 build.py` on macOS
+(the generator uses `sips` to read image sizes). All required images are included.
+Edit the generator rather than generated HTML. Layout uses `style.css`,
+`edition.css`, and `edition.js`. Editorial working notes are in `EDITORIAL.md`.
+
+## Hosting
+
+This is a static site, with no Node server or installation step. GitHub Pages
+can publish the repository root directly; `.nojekyll` bypasses Jekyll processing.
+The `main` branch publishes to GitHub Pages. Earlier versions remain in Git
+history. No custom domain is configured.

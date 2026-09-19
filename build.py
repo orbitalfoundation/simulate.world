@@ -1,0 +1,122 @@
+"""Render the original 2015 thesis without rewriting its words or image sequence."""
+import json, re, html, shutil, struct, subprocess
+from pathlib import Path
+from html.parser import HTMLParser
+
+ROOT = Path(__file__).resolve().parent
+ORIGINAL_IMAGES = ROOT/'images'
+thesis = json.loads((ROOT/'source/thesis.json').read_text())
+slugs = ['our-world','mixed-messages','emerging-superpowers','looking-closer','existential-threats','hacking-the-system','building-digital-models','examples','participate']
+esc = html.escape
+
+class Inline(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True); self.out=[]; self.in_link=False
+    def handle_starttag(self, tag, attrs):
+        attrs=dict(attrs)
+        if tag=='a' and attrs.get('href','').startswith(('https://','http://')):
+            self.out.append('<a href="'+esc(attrs['href'],quote=True)+'">');self.in_link=True
+        elif tag in ('b','strong','em','i','br'): self.out.append('<'+tag+'>')
+    def handle_endtag(self,tag):
+        if tag=='a' and self.in_link:self.out.append('</a>');self.in_link=False
+        elif tag in ('b','strong','em','i'):self.out.append('</'+tag+'>')
+    def handle_data(self, data):
+        if self.in_link:self.out.append(esc(data));return
+        for part in re.split(r'(https?://[^\s<>]+)',data):
+            if part.startswith(('http://','https://')):
+                url=part.rstrip(').,;');tail=part[len(url):]
+                self.out.append('<a href="'+esc(url,quote=True)+'">'+esc(url)+'</a>'+esc(tail))
+            else:self.out.append(esc(part))
+def inline(s):
+    p=Inline();p.feed(s);p.close();return ''.join(p.out)
+def prose(s):
+    return ''.join('<p>'+inline(p.strip()).replace('\n','<br>')+'</p>' for p in re.split(r'\n\s*\n',s.strip()) if p.strip())
+def plain(s):return re.sub(r'\s+',' ',re.sub('<[^>]+>',' ',s)).strip()
+def image(name, alt, cover=False):
+    dst=ROOT/'images'/name
+    if not dst.exists():shutil.copy2(ORIGINAL_IMAGES/name,dst)
+    dim=subprocess.check_output(['sips','-g','pixelWidth','-g','pixelHeight',str(dst)],text=True)
+    w=re.search(r'pixelWidth: (\d+)',dim)[1];h=re.search(r'pixelHeight: (\d+)',dim)[1]
+    return f'<img src="images/{esc(name,quote=True)}" alt="{esc(alt,quote=True)}" width="{w}" height="{h}" '+('fetchpriority="high"' if cover else 'loading="lazy"')+'>'
+
+def nav(prefix=''):
+    (ROOT/'thumbnails').mkdir(exist_ok=True)
+    rows=[]
+    for i,(slug,c) in enumerate(zip(slugs,thesis['children']),1):
+        thumb=ROOT/'thumbnails'/f'{slug}.jpg'
+        if not thumb.exists():
+            source=ROOT/'images'/c['art']
+            if not source.exists():source=ORIGINAL_IMAGES/c['art']
+            subprocess.run(['sips','-Z','160','-s','format','jpeg',str(source),'--out',str(thumb)],check=True,stdout=subprocess.DEVNULL)
+        rows.append(f'<a href="{prefix}#{slug}"><img src="thumbnails/{slug}.jpg" alt="" width="48" height="34"><span class="chapter-number">{i:02}</span><span class="chapter-name">{esc(c["label"])}</span></a>')
+    return ''.join(rows)
+def shell(title,body,reading=False):
+    n=nav('index.html' if reading else '')
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f4f2e9"><title>{title}</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="edition.css"><script src="edition.js" defer></script><noscript><style>@media(max-width:760px){{.sidebar{{display:block;position:static;max-height:none}}.mobile-header button{{display:none}}}}</style></noscript></head><body>
+<a class="skip" href="#content">Skip to content</a><header class="mobile-header"><a class="brand" href="index.html">simulate.world<span class="brand-dot">●</span></a><button id="menu-toggle" aria-expanded="false" aria-controls="chapter-nav">Chapters ＋</button></header>
+<aside class="sidebar"><div class="palette-heading"><a class="brand desktop-brand" href="index.html">simulate.world<span class="brand-dot">●</span></a><button id="desktop-toggle" aria-expanded="true" aria-controls="chapter-nav" aria-label="Collapse chapter menu">−</button></div><div class="sidebar-center"><p class="eyebrow">An essay in nine chapters</p><nav id="chapter-nav" aria-label="Chapters">{n}</nav><div class="reading-progress" aria-hidden="true"><div id="progress-fill"></div></div></div><div class="sidebar-bottom"><a href="reading.html">Reading list ↗</a><span>Anselm Hook</span><time datetime="2015-06-24">June 24, 2015</time></div></aside>
+<main>{body}</main></body></html>'''
+
+# Minimal factual corrections; unmodified source retained in source/thesis.json.
+corrections = {
+    (3,5): ('such as eradicating polio under', 'such as progress toward eradicating polio under'),
+    (4,3): ('an increase of 0.1 pH over', 'a decrease of 0.1 pH units over'),
+}
+def edited_notes(text, chapter, slide):
+    if (chapter,slide) in corrections:
+        before,after=corrections[(chapter,slide)]
+        assert before in text
+        return text.replace(before,after,1)
+    return text
+
+body=f'''<section class="cover" id="top"><div class="edition-cover-image">{image('glacier.jpg','A snowy mountain lake.',True)}</div><div class="cover-shade"></div><div class="cover-top"><span>Ecology · Models · Civic life</span><span>2015</span></div><div class="cover-copy"><p class="eyebrow">World Makers</p><h1>Simulate<br>World.</h1><p>Computationally predicting<br>the future of our planet.</p><a class="begin" href="#our-world">Begin the thesis <span aria-hidden="true">↓</span></a></div><div class="cover-bottom"><span>Anselm Hook</span><time datetime="2015-06-24">June 24, 2015</time><span>Nine chapters</span></div></section>
+<div id="content"></div>'''
+for ci,(slug,chapter) in enumerate(zip(slugs,thesis['children']),1):
+    body+=f'<section class="chapter original-chapter" id="{slug}" aria-labelledby="{slug}-title"><header class="chapter-heading"><p class="eyebrow">{ci:02} / {len(thesis["children"]):02} · 2015</p><h2 id="{slug}-title">{esc(chapter["label"])}</h2><p class="chapter-length">{len(chapter["children"])} parts</p></header>'
+    for si,slide in enumerate(chapter['children'],1):
+        label=slide.get('label','');meaningful=label not in ['nothing','details','', 'disorder']
+        captions=[plain(c.get('notes','')).strip() for c in slide.get('children',[]) if c.get('kind')=='text']
+        labeltext=' · '.join(captions) if captions else (label if meaningful else chapter['label'])
+        body+=f'<article class="original-slide" id="{slug}-{si}" data-source-chapter="{ci}" data-source-slide="{si}"><div class="slide-position"><span>{ci:02}.{si:02}</span><a href="#{slug}-{si}" aria-label="Link to part {si} of {esc(chapter["label"],quote=True)}">Permalink ↗</a></div><figure class="original-figure">{image(slide["art"],labeltext)}'
+        if captions:body+='<figcaption class="original-caption">'+''.join('<span>'+esc(t)+'</span>' for t in captions)+'</figcaption>'
+        elif meaningful:body+='<figcaption class="original-caption">'+esc(label)+'</figcaption>'
+        body+='</figure><div class="prose original-text">'+prose(edited_notes(slide['notes'],ci,si))+'</div>'
+        body+='</article>'
+    if ci<len(slugs):body+=f'<a class="next" href="#{slugs[ci]}"><span>Next chapter<strong>{esc(thesis["children"][ci]["label"])}</strong></span><span aria-hidden="true">↗</span></a>'
+    else:body+='<a class="next" href="reading.html"><span>Continue exploring<strong>Reading list</strong></span><span aria-hidden="true">↗</span></a>'
+    body+='</section>'
+body+='''<footer><p class="eyebrow">Simulate World</p><h2>World Makers</h2><p>Anselm Hook · <time datetime="2015-06-24">June 24, 2015</time></p><div class="footer-bottom"><a href="reading.html">Reading list ↗</a><a href="#top">Back to top ↑</a></div></footer>'''
+(ROOT/'index.html').write_text(shell('Simulate World — An essay by Anselm Hook',body))
+print('Rendered',sum(len(c['children']) for c in thesis['children']),'original parts.')
+reading=json.loads((ROOT/'reading-data.json').read_text())
+r='''<div class="reading-page" id="content"><header><p class="eyebrow">Simulate World · Reading list</p><h1>Reading list.</h1><p>Books, essays, and models for thinking about our world.</p><p class="section-note">A companion to the essay, from ecological relationships and collective decision-making to models we can explore.</p><nav class="reading-nav" aria-label="Reading categories"><a href="#books">Books</a><a href="#papers">Essays &amp; papers</a><a href="#interactive">Interactive reading</a><a href="#news">News &amp; links</a><a href="#organizations">Organizations</a><a href="#voices">Voices</a><a href="#philosophy">Philosophy</a><a href="#models">Models</a></nav></header>'''
+r+='''<section class="presentation-link" aria-labelledby="presentation-title"><a class="presentation-thumbnail" href="https://www.youtube.com/watch?v=ibgt7Mbw2tE&amp;t=3s" aria-label="Watch the Simulate World presentation"><img src="images/presentation-thumbnail.jpg" alt="" width="480" height="360"><span aria-hidden="true">▶</span></a><div class="presentation-copy"><p class="eyebrow">Video presentation</p><h2 id="presentation-title"><a href="https://www.youtube.com/watch?v=ibgt7Mbw2tE&amp;t=3s">Watch the Simulate World presentation ↗</a></h2><p>Anselm Hook · YouTube</p></div></section>'''
+for section,slug in [('Books','books'),('Essays & papers','papers'),('Interactive reading','interactive')]:
+ r+=f'<section id="{slug}"><h2>{esc(section)}</h2>'
+ for item in reading:
+  if item['section']!=section:continue
+  cover=f'<img class="book-cover" src="{esc(item["cover"],quote=True)}" alt="Cover of {esc(item["title"],quote=True)}" loading="lazy">' if item.get('cover') else ''
+  lead=cover if cover else f'<span class="year">{item["year"]}</span>'
+  date=f'<span class="year">{item["year"]}</span>' if cover else ''
+  kind=' book-item' if cover else ''
+  r+=f'''<article class="reading-item{kind}">{lead}<div>{date}<h3><a href="{esc(item['url'],quote=True)}">{esc(item['title'])} ↗</a></h3><p class="author">{esc(item['author'])}</p><p>{esc(item['description'])}</p></div></article>'''
+ r+='</section>'
+# Render the complete original resource directory, retaining its groupings and URLs.
+resources=json.loads((ROOT/'source/resources.json').read_text())
+groups=[]
+for item in resources['children']:
+ if item['label'].startswith('<h1>'):
+  groups.append((plain(item['label']),[]))
+ else:groups[-1][1].append(item)
+section_ids={'News and Links':'news','Orgs':'organizations','Voices':'voices','Philosophy':'philosophy','Models':'models'}
+for name,items in groups:
+ title='Organizations' if name=='Orgs' else name
+ r+=f'<section class="resource-section" id="{section_ids[name]}"><h2>{esc(title)}</h2><ul class="resource-list">'
+ for item in items:
+  label=esc(item['label']);url=item.get('url',item.get('link',''))
+  title=f'<a href="{esc(url,quote=True)}">{label} <span aria-hidden="true">↗</span></a>' if url else label
+  parent=f'<span class="resource-context">{esc(item["parent"])}</span>' if item.get('parent') else ''
+  r+=f'<li>{title}{parent}</li>'
+ r+='</ul></section>'
+r+='''<div class="reading-footer"><div class="edition-links"><a href="index.html">Return to the essay ↗</a></div></div></div>'''
+(ROOT/'reading.html').write_text(shell('Reading list — Simulate World (2015)',r,True))
