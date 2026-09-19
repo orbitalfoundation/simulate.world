@@ -76,3 +76,9 @@ used for fact checking are not silently added as 2015 readings. Historical exter
 links can still fail or redirect; a complete external-link and inherited-image
 rights audit remains separate work. Scientific models remain illustrative and
 contestable; removing unsupported claims is not evidence that they were all false.
+
+## Follow-up: cover attribution and X handle
+
+At Anselm’s request, added one small cover byline linking to About. Corrected the
+organization’s X handle to `@orbitalfdn` in visible links and social metadata.
+The GitHub organization and Pages hostname remain `orbitalfoundation`.
